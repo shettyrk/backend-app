@@ -115,7 +115,7 @@ Ramakrishna Shetty
 Associate Software Developer
 🔗 LinkedIn
 
-📧 ramakrishna.shetty@example.com
+📧 ramakrishna.shetty25@gmail.com
 
 🪪 License
 
