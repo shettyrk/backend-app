@@ -6,31 +6,6 @@ It powers the CandleStore frontend by managing users, authentication, products, 
 
 ---
 
-## ⚙️ Architecture Overview
-
-             ┌───────────────────┐
-             │   API Gateway     │  ← Entry Point
-             └────────┬──────────┘
-                      │
-   ┌──────────────────┴────────────────────┐
-   │                  │                    │
-┌────────────┐ ┌──────────────┐ ┌──────────────┐
-│ Auth Svc │ │ Product Svc │ │ Order Svc │
-│ (JWT Auth) │ │ (Catalog) │ │ (Cart, Order)│
-└────────────┘ └──────────────┘ └──────────────┘
-│ │ │
-└──────────┬─────────┴───────────┬────────┘
-│ │
-┌─────────────┐ ┌──────────────┐
-│Inventory Svc│ │Notification │
-│ (Stock) │ │ Svc (Email) │
-└─────────────┘ └──────────────┘
-│
-┌───────────────┐
-│Config Server │
-│Eureka Server │
-└───────────────┘
----
 
 ## 🧱 Microservices List
 
