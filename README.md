@@ -8,8 +8,6 @@ It powers the CandleStore frontend by managing users, authentication, products, 
 
 ## ⚙️ Architecture Overview
 
-markdown
-Copy code
              ┌───────────────────┐
              │   API Gateway     │  ← Entry Point
              └────────┬──────────┘
@@ -32,10 +30,6 @@ Copy code
 │Config Server │
 │Eureka Server │
 └───────────────┘
-
-yaml
-Copy code
-
 ---
 
 ## 🧱 Microservices List
@@ -83,15 +77,14 @@ CandleStore-Backend/
 ├── notification-service/
 └── README.md
 
-yaml
-Copy code
+
 
 ---
 
 ## ⚡ Setup Instructions
 
 ### 1️⃣ Clone Repository
-```bash
+
 git clone https://github.com/<your-username>/CandleStore-Backend.git
 cd CandleStore-Backend
 2️⃣ Configure Database
@@ -115,7 +108,8 @@ spring:
     show-sql: true
 3️⃣ Run the Services (in this order)
 bash
-Copy code
+
+
 # 1. Start service discovery
 mvn spring-boot:run -f service-discovery/pom.xml
 
