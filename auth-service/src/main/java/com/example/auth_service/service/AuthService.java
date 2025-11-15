@@ -11,6 +11,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -19,20 +22,15 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtUtils jwtUtils;
 
-    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtUtils jwtUtils) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-        this.jwtUtils = jwtUtils;
-    }
-
     public void signup(SignupRequest request) {
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
             throw new RuntimeException("User already exists");
         }
+        // default role USER
         User user = User.builder()
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role("USER")
+                .roles("USER")
                 .build();
         userRepository.save(user);
     }
@@ -45,13 +43,21 @@ public class AuthService {
             throw new RuntimeException("Invalid email or password");
         }
 
-        String token = jwtUtils.generateToken(user.getEmail());
+        List<String> roles = Arrays.stream(user.getRoles().split(","))
+                .map(String::trim)
+                .toList();
+
+        String token = jwtUtils.generateToken(user.getEmail(), roles);
         return new AuthResponse(token);
     }
 
-
-    public boolean getJwtUtils(String token) {
-        return jwtUtils.validateToken(token);
+    // admin helper: promote a user to ADMIN
+    public void promoteToAdmin(String email) {
+        User u = userRepository.findByEmail(email).orElseThrow();
+        if (!u.getRoles().contains("ADMIN")) {
+            u.setRoles(u.getRoles() + ",ADMIN");
+            userRepository.save(u);
+        }
     }
 }
 

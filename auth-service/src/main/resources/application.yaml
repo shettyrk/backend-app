@@ -7,11 +7,14 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/auth_db
     username: root
-    password: root
+    password: mypass123
+  liquibase:
+    enabled: true
+    change-log: classpath:db-changelog/master.xml
   jpa:
     hibernate:
-      ddl-auto: update
-    show-sql: true
+      ddl-auto: none
+
 
 eureka:
   client:

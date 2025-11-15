@@ -5,22 +5,25 @@ import lombok.*;
 
 
 @Entity
+@Table(name = "users")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@Table(name = "users")
+@Builder(toBuilder = true)
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(nullable = false)
     private String password;
 
-    private String role; // e.g. USER / ADMIN
+    // store roles as e.g. "USER,ADMIN" or "USER"
+    @Column(nullable = false)
+    private String roles;
 }
