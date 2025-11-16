@@ -1,3 +1,22 @@
+server:
+  port: 8081
+
 spring:
   application:
     name: auth-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/auth_db
+    username: root
+    password: mypass123
+  liquibase:
+    enabled: true
+    change-log: classpath:db-changelog/master.xml
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
