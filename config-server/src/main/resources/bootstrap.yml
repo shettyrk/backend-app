@@ -1,9 +1,11 @@
 spring:
   application:
-    name: product-service
+    name: ${spring.application.name}
+
   cloud:
     config:
       uri: http://localhost:8888
       label: main
+
   profiles:
     active: dev

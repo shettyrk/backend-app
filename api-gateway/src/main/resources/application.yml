@@ -1,11 +1,9 @@
-server:
-  port: 8080
-
 spring:
   application:
     name: api-gateway
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
+  cloud:
+    config:
+      uri: http://localhost:8888
+      label: main
+  profiles:
+    active: dev

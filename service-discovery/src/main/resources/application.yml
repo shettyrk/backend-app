@@ -1,15 +1,10 @@
-server:
-  port: 8761
-
 spring:
   application:
     name: service-discovery
+  cloud:
+    config:
+      uri: http://localhost:8888
+      label: main
+  profiles:
+    active: dev
 
-eureka:
-  client:
-    register-with-eureka: false
-    fetch-registry: false
-  server:
-    enable-self-preservation: false
-  instance:
-    hostname: localhost
