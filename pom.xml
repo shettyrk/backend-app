@@ -45,6 +45,7 @@
     <!-- Global compiler + build settings -->
     <properties>
         <java.version>17</java.version>
+        <spring.cloud.bootstrap.enabled>true</spring.cloud.bootstrap.enabled>
     </properties>
 
     <!-- List of your microservice modules -->
